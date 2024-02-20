@@ -1,0 +1,81 @@
+.datos{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.nombre-tienda{
+    text-align: center;
+}
+
+.caja-datos{
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    height: 150px;
+}
+
+.datos-calculados{
+    text-align: right;
+    align-items: right;
+    float: right;
+    width: 50%;
+    margin-left: 50%;
+}
+.datos-empresa{
+    text-align: center;
+    color: rgb(18, 18, 65);
+}
+
+.datos-factura{
+    border: solid rgb(18, 18, 65);
+    border-radius: 20px;
+    text-align: center;
+    max-width: 450px;
+    float: right;
+    margin-left: 40%;
+    color:rgb(18, 18, 65);
+}
+
+.datos-factura h2{
+    color: red;
+}
+
+.datos-cliente{
+    margin-top: 20px;
+    border: solid rgb(18, 18, 65);
+    border-radius: 20px;
+    padding: 20px;
+    color: rgb(18, 18, 65);
+    text-decoration: underline;
+    text-align: justify;
+}
+
+.tbl-productos tbody tr td{
+text-align: center;
+color:  rgb(18, 18, 65); ;
+}
+.tbl-productos thead tr td{
+    text-align: center;
+    color:  rgb(18, 18, 65); ;
+    }
+.datos-calculados table tbody tr td{
+    text-align: center;
+    color:  rgb(18, 18, 65); 
+    /*background-color: rgb(210, 235, 243);*/
+}
+.tipo-pago table tbody tr td {
+    text-align: center;
+}
+.tipo-pago{
+    width: 60%;
+}
+
+#content-to-print{
+    border: solid rgb(18, 18, 65);
+    border-radius: 20px;
+    margin-top:30px;
+    height: 1200px;
+}
+#cont{
+    text-align: center;
+    
+}

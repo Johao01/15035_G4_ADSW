@@ -1,0 +1,89 @@
+.contenedor_select_boton {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos en el contenedor */
+    margin-top: 75px;
+  }
+  
+  /* Puedes ajustar este margen según tus preferencias */
+  .productSelect {
+    margin-right: 60px; /* Margen entre el Select y el botón */
+    width: 450px;
+    
+}
+  #boton_Enviar_Detalle{
+    margin-left: 300px;
+  }
+#productos_detalle{
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    background-color: rgb(253, 245, 245);
+}
+
+#productos_detalle tbody tr td{
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    background-color: rgb(253, 245, 245);
+}
+#productos_detalle tbody tr td input{
+    background: transparent;
+   appearance: none;
+    padding: 8px; 
+    font-size: 16px; 
+    border: none;
+    outline: none;
+    padding-right: 24px;
+    color: black;
+    
+
+    /*width: "100px", // Ajusta el ancho según tus preferencias*/
+ }
+ .input_rojo {
+  border-color: red;
+}
+.botones-factura-consumidor{
+  
+  text-align: center;
+margin-top: 70px;
+margin-bottom: 20px;
+  
+}
+.custom-button{
+  border-radius: 20px;
+  text-align: center;
+  background-color: rgb(255, 127, 35);
+  margin-left: 30px;
+
+}
+
+.ClienteSelect {
+  margin-right: 60px; /* Margen entre el Select y el botón */
+  width: 400px;
+}
+.factura-diseño {
+  font-size: 20px;
+  border: solid;
+  border-radius: 20px;
+  background-image: url("https://i.pinimg.com/originals/f1/16/fc/f116fc1b93496a90dfaca1fb9a7411ff.jpg");
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir el contenedor */
+  background-position: center; /* Centra la imagen en el contenedor */
+}
+
+
+.factura-diseño h1{
+  font-weight: 100;
+  }
+  .contenedor{
+    margin: 30px;
+  }
+
+  .cont-encabezado{
+    text-align: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  .tabla-detalle-factura tbody tr td{
+    text-align: center;
+  }

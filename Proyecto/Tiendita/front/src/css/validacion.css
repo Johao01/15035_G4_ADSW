@@ -1,0 +1,94 @@
+.dropdown {
+    display: inline-block;
+    position: relative;
+  }
+  .dropdown-content {
+    display: none;
+    position:fixed;
+    width: 100px;
+    overflow: auto;
+    
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+    
+      background-color: white;
+   
+    
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .dropdown-item{
+    color: green;
+  }
+  .dropdown-item:hover{
+    padding: 5px 10px; /* Espacio interno */
+  border-radius: 5px; /* Borde redondeado */
+  margin-left: 40px;
+  margin-right: 40px;
+  background-color: #fff; /* Color de fondo al pasar el cursor */
+  color: black; /* Color del texto al pasar el cursor */
+  }
+  
+  .l{
+    display: block;
+    color: #5c0303;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .btnValidacion{
+    background: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    width: 100px;
+  }
+  .submenu {
+    display: none; /* El submenú estará oculto por defecto */
+    position: absolute;
+    background-color: #c59393; /* Color de fondo del submenú */
+    border: 1px solid #ccc; /* Borde del submenú */
+    padding: 10px;
+    width: 450px;
+    right: 0px;
+      list-style-type:none
+}
+.sub{
+  background-color: #c59393; 
+}
+
+
+/* Estilos para mostrar el submenú cuando se pasa el ratón sobre el elemento principal */
+.nav-alert:hover .submenu {
+    display: block; /* Mostrar el submenú cuando se pasa el ratón sobre el elemento principal */
+}
+
+.alerta{
+  position: relative; 
+}
+  
+.contador p{
+  position: absolute;
+  text-align: center;
+  left: 2px;
+  color: white;
+  top: -2px;
+ 
+}
+.contador{
+  border: solid red;
+  position: absolute;
+  left: 8px;
+  top:-10px;
+  width:20px;
+  height: 20px;
+  border-radius: 30px;
+  text-align: center;
+background-color: red;
+z-index: 1;
+}
+.alerta i{
+  z-index: 2;
+}

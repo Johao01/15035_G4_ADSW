@@ -1,0 +1,32 @@
+/* InformeVentas.css */
+
+.informe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+  }
+  
+  .informe-content {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+  
+  .informe-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .ventas-heading {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .total-sum {
+    font-size: 16px;
+  }
+  
