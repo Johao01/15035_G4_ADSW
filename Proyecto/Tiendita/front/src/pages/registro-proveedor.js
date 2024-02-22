@@ -46,6 +46,49 @@ const validarCorreoElectronico = (email) => {
   }
   return emailRegex.test(email);
 };
+function verificarCedula(cedula) {
+  if (typeof(cedula) == 'string' && cedula.length == 10 && /^\d+$/.test(cedula)) {
+    var digitos = cedula.split('').map(Number);
+    var codigo_provincia = digitos[0] * 10 + digitos[1];
+
+    //if (codigo_provincia >= 1 && (codigo_provincia <= 24 || codigo_provincia == 30) && digitos[2] < 6) {
+
+    if (codigo_provincia >= 1 && (codigo_provincia <= 24 || codigo_provincia == 30)) {
+      var digito_verificador = digitos.pop();
+
+      var digito_calculado = digitos.reduce(
+        function (valorPrevio, valorActual, indice) {
+          return valorPrevio - (valorActual * (2 - indice % 2)) % 9 - (valorActual == 9) * 9;
+        }, 1000) % 10;
+      return digito_calculado === digito_verificador;
+}
+  }
+  return false;
+}
+const validarRUC = (ruc) => {
+  // Verificar si la longitud del RUC es correcta
+  if (ruc.length !== 13) {
+    return false;
+  }
+
+  // Extraer los primeros 10 dígitos (la cédula)
+  const cedula = ruc.substring(0, 10);
+
+  // Verificar si la cédula es válida usando la función validarCedula existente
+  if (!verificarCedula(cedula)) {
+    return false;
+  }
+
+  // Verificar si los últimos 3 dígitos son "001"
+  const ultimosTresDigitos = ruc.substring(10);
+  if (ultimosTresDigitos !== "001") {
+    return false;
+  }
+
+  // Si pasa todas las validaciones, el RUC es válido
+  return true;
+};
+
 
   
   // Funcion que valida los cambios en la cedula y el telefono
@@ -73,6 +116,24 @@ const validarCorreoElectronico = (email) => {
       }
     }
   };
+  const handleRUCChange = (e) => {
+    const value = e.target.value;
+  
+    if (validarNumero(value) || value === "") {
+      // Validamos que sean solo números o un campo vacío
+      const inputName = e.target.name;
+      switch (inputName) {
+        case "ruc":
+          setRuc(value);
+          break;
+  
+        default:
+          alert("¡Este Campo solo contiene números!");
+          break;
+      }
+    }
+  };
+  
 
   // Funcion que valida los cambios del primer y segundo nombre que solo se ingresen caracteres
   const handleTextChange = (e) => {
@@ -83,11 +144,28 @@ const validarCorreoElectronico = (email) => {
   
     if (inputName === "Nombre") {
       valid = validarTexto(value);
-      setNombre(value.replace(/\d/g, ""));
+      // Remover caracteres especiales excepto puntos y guiones
+      setNombre(value.replace(/[^\w\s.-]/g, ""));
     }
   };
+  const handleAlphanumericChange = (e) => {
+    const value = e.target.value;
+    const inputName = e.target.name;
+  
+    // Expresión regular que permite letras, números y espacios, pero excluye caracteres especiales
+    const alphanumericRegex = /^[A-Za-z0-9\s]+$/;
+  
+    if (alphanumericRegex.test(value) || value === '') {
+      if (inputName === "Nombre") {
+        setNombre(value);
+      }
+      // Puedes agregar más casos para otros campos si es necesario
+    }
+  };
+
   //Validar si el valor es un texto
-  const validarTexto = (value) => /^[A-Za-z\s]+$/.test(value);
+  // Validar si el valor contiene solo letras, números, puntos y guiones
+  const validarTexto = (value) => /^[\w\s.-]*$/.test(value);
 
   //Validar si el valor es un numero
   const validarNumero = (value) => /^\d+$/.test(value);  
@@ -117,6 +195,8 @@ const validarCorreoElectronico = (email) => {
       alert('Ingrese un correo electrónico válido.');
       return false;
     }
+    // Validar si el RUC es válido
+    
 
     return true;
   };
@@ -145,7 +225,12 @@ const validarCorreoElectronico = (email) => {
 const nuevoProveedor = async (e) => {
     e.preventDefault();
     // Validar los datos
+  
   if (!validarFormulario()) {
+    return;
+  }
+  if (!validarRUC(Ruc)) {
+    alert("Ingrese un RUC válido.");
     return;
   }
     e.preventDefault();
@@ -160,11 +245,16 @@ const nuevoProveedor = async (e) => {
     setShowModal(false);
     getProveedores();
   };
+
 //FUNCION PARA ACTUALIZAR LOS DATOS DEL CLIENTE
 const update = async (e) => {
   e.preventDefault();
   // Validar los datos
   if (!validarFormulario()) {
+    return;
+  }
+  if (!validarRUC(Ruc)) {
+    alert("Ingrese un RUC válido.");
     return;
   }
 
@@ -388,7 +478,7 @@ const update = async (e) => {
                   name="ruc"
                   maxLength={13}
                   placeholder="Ingrese numero de RUC"
-                  onChange={handleNumeroChange}
+                  onChange={handleRUCChange}
                   value={Ruc}
                   required
                 />
@@ -425,7 +515,18 @@ const update = async (e) => {
                   id="direccion"
                   name="direccion"
                   placeholder="Ingrese dirección"
-                  onChange={(e) => setDireccion(e.target.value)}
+                  value={Direccion}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    // Expresión regular que permite letras, números, espacios, puntos y guiones
+                    const regex = /^[A-Za-z0-9\s.-]*$/;
+                    // Verifica si el nuevo valor coincide con la expresión regular
+                    if (regex.test(newValue) || newValue === '') {
+                      // Si el valor es válido, actualiza el estado
+                      setDireccion(newValue);
+                    }
+                    // Si el valor no es válido, se ignora la entrada pero se mantiene el valor actual
+                  }}
                   required
                 />
               </div>
@@ -500,9 +601,19 @@ const update = async (e) => {
                   type="text"
                   id="direccion"
                   name="direccion"
-                  className="centered-input"
+                  placeholder="Ingrese dirección"
                   value={Direccion}
-                  onChange={(e) => setDireccion(e.target.value)}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    // Expresión regular que permite letras, números, espacios, puntos y guiones
+                    const regex = /^[A-Za-z0-9\s.-]*$/;
+                    // Verifica si el nuevo valor coincide con la expresión regular
+                    if (regex.test(newValue) || newValue === '') {
+                      // Si el valor es válido, actualiza el estado
+                      setDireccion(newValue);
+                    }
+                    // Si el valor no es válido, se ignora la entrada pero se mantiene el valor actual
+                  }}
                   required
                 />
               </div>
