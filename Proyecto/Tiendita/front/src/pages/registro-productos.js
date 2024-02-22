@@ -66,6 +66,20 @@ const RegistroProductos = () => {
         setNombre(value);
       }
     };
+    const handleAlphanumericChange = (e) => {
+      const value = e.target.value;
+      const inputName = e.target.name;
+    
+      // Expresión regular que permite letras, números y espacios, pero excluye caracteres especiales
+      const alphanumericRegex = /^[A-Za-z0-9\s]+$/;
+    
+      if (alphanumericRegex.test(value) || value === '') {
+        if (inputName === "Nombre") {
+          setNombre(value);
+        }
+        // Puedes agregar más casos para otros campos si es necesario
+      }
+    };
     
   
 //FUNCION PARA ACTUALIZAR LOS DATOS DE LOS PRODUCTOS POR ID 
@@ -424,7 +438,7 @@ const RegistroProductos = () => {
                   name="Nombre"
                   value={Nombre}
                   placeholder="Ingrese nombre producto"
-                  onChange={handleTextChange}
+                  onChange={handleAlphanumericChange}
                   required
                 />
               </div>
@@ -466,27 +480,47 @@ const RegistroProductos = () => {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="descripcion">Descripcion:</label>
-                <input
-                  type="text"
-                  id="descripcion"
-                  name="descripcion"
-                  placeholder="Ingrese una descripcion"
-                  value={Descripcion}
-                  onChange={(e) => setDescripcion(e.target.value)}
-                />
+              <label htmlFor="descripcion">Descripcion:</label>
+              <input
+                type="text"
+                id="descripcion"
+                name="descripcion"
+                placeholder="Ingrese una descripcion"
+                value={Descripcion}
+                onChange={(e) => {
+                  const newValue = e.target.value;
+                  // Expresión regular que permite solo caracteres alfanuméricos y espacios
+                  const alphanumericRegex = /^[A-Za-z0-9\s]*$/;
+                  // Verifica si el nuevo valor coincide con la expresión regular
+                  if (alphanumericRegex.test(newValue) || newValue === '') {
+                    // Si el valor es válido, actualiza el estado
+                    setDescripcion(newValue);
+                  }
+                  // Si el valor no es válido, se ignora la entrada pero se mantiene el valor actual
+                }}
+              />
               </div>
 
               <div className="form-group">
                 <label htmlFor="precio">Precio:</label>
-                <input
-                  type="number"
-                  id="Precio"
-                  name="Precio"
-                  value={Precio}
-                  placeholder="Ingrese el precio"
-                  onChange={(e) => setPrecio(e.target.value)}
-                />
+                  <input
+                    type="text"
+                    id="Precio"
+                    name="Precio"
+                    value={Precio}
+                    placeholder="Ingrese el precio"
+                    onChange={(e) => {
+                      const newValue = e.target.value;
+                      // Expresión regular que permite solo números y el punto
+                      const numericRegex = /^[0-9.]*$/;
+                      // Verifica si el nuevo valor coincide con la expresión regular
+                      if (numericRegex.test(newValue) || newValue === '') {
+                        // Si el valor es válido, actualiza el estado
+                        setPrecio(newValue);
+                      }
+                      // Si el valor no es válido, no se actualiza el estado y se ignora la entrada
+                    }}
+                  />
               </div>
               <div className="form-group">
                 <label>IVA:</label>
@@ -535,7 +569,7 @@ const RegistroProductos = () => {
                   id="Nombre"
                   name="Nombre"
                   value={Nombre}
-                  onChange={handleTextChange}
+                  onChange={handleAlphanumericChange}
                   required
                 />
               </div>
@@ -579,25 +613,45 @@ const RegistroProductos = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="descripcion">Descripcion:</label>
-                <input
-                  type="text"
-                  id="descripcion"
-                  name="descripcion"
-                  value={Descripcion}
-                  onChange={(e) => setDescripcion(e.target.value)}
-                />
+              <label htmlFor="descripcion">Descripcion:</label>
+              <input
+                type="text"
+                id="descripcion"
+                name="descripcion"
+                value={Descripcion}
+                onChange={(e) => {
+                  const newValue = e.target.value;
+                  // Expresión regular que permite solo caracteres alfanuméricos y espacios
+                  const alphanumericRegex = /^[A-Za-z0-9\s]*$/;
+                  // Verifica si el nuevo valor coincide con la expresión regular
+                  if (alphanumericRegex.test(newValue) || newValue === '') {
+                    // Si el valor es válido, actualiza el estado
+                    setDescripcion(newValue);
+                  }
+                  // Si el valor no es válido, se ignora la entrada pero se mantiene el valor actual
+                }}
+              />
               </div>
 
               <div className="form-group">
-                <label htmlFor="precio">Precio:</label>
-                <input
-                  type="number"
-                  id="precio"
-                  name="precio"
-                  value={Precio}
-                  onChange={(e) => setPrecio(e.target.value)}
-                />
+              <label htmlFor="precio">Precio:</label>
+              <input
+                type="text"
+                id="precio"
+                name="precio"
+                value={Precio}
+                onChange={(e) => {
+                  const newValue = e.target.value;
+                  // Expresión regular que permite solo números y el punto
+                  const numericRegex = /^[0-9.]*$/;
+                  // Verifica si el nuevo valor coincide con la expresión regular
+                  if (numericRegex.test(newValue) || newValue === '') {
+                    // Si el valor es válido, actualiza el estado
+                    setPrecio(newValue);
+                  }
+                  // Si el valor no es válido, se ignora la entrada pero se mantiene el valor actual
+                }}
+              />
               </div>
               <div className="form-group">
                 <label>IVA:</label>
