@@ -274,7 +274,7 @@ const RegistroProductos = () => {
             <th>NOMBRE</th>
             <th>PROVEEDOR</th>
             <th>CATEGORIA</th>
-            <th>DESCRIPCION</th>
+            <th>DESCRIPCIÓN</th>
             <th>STOCK</th> {/* Cambiar ubicación de STOCK y PRECIO */}
             <th>PRECIO</th> {/* Cambiar ubicación de STOCK y PRECIO */}
             <th>IVA</th>

@@ -347,7 +347,7 @@ const update = async (e) => {
             <th>NOMBRE</th>
             <th>EMAIL</th>
             <th>CONTACTO</th>
-            <th>DIRECCION</th>
+            <th>DIRECCIÓN</th>
             <th>ESTADO</th>
             <th>ACCIONES</th>
           </tr>

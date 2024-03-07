@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <p>Tiendita &copy; {new Date().getFullYear()}</p>
-        <p>Contacto:  webGroup@espe.edu.ec</p>
+        <p>Contacto:  análisisGroup4@espe.edu.ec</p>
       </div>
     </footer>
   );
